@@ -1,31 +1,31 @@
 (ns kata-bowling.core)
 (declare score-frame advance-frame)
 
-(defn score [rolls]
-  (loop [score 0 balls rolls]
-    (cond (empty? balls) score
-          :else (recur (+ score (score-frame balls))
-                       (advance-frame balls)))))
+(defn score [game-rolls]
+  (loop [score 0 rolls game-rolls]
+    (cond (empty? rolls) score
+          :else (recur (+ score (score-frame rolls))
+                       (advance-frame rolls)))))
 
-(defn spare? [balls]
-  (= 10 (+ (first balls) (second balls))))
+(defn spare? [rolls]
+  (= 10 (+ (first rolls) (second rolls))))
 
-(defn strike? [balls]
-  (= 10 (first balls)))
+(defn strike? [rolls]
+  (= 10 (first rolls)))
 
-(defn last-frame? [balls]
-  (= 3 (count balls)))
+(defn bonus-ball-rolled? [rolls]
+  (= 3 (count rolls)))
 
-(defn balls-to-score [balls]
-  (if (or (last-frame? balls) (spare? balls) (strike? balls)) 3 2))
+(defn rolls-to-score [rolls]
+  (if (or (spare? rolls) (strike? rolls)) 3 2))
 
-(defn balls-to-drop [balls]
-  (cond (last-frame? balls) 3
-        (strike? balls) 1
+(defn rolls-to-drop [rolls]
+  (cond (bonus-ball-rolled? rolls) 3
+        (strike? rolls) 1
         :else 2))
 
-(defn score-frame [balls]
-  (reduce + (take (balls-to-score balls) balls)))
+(defn score-frame [rolls]
+  (reduce + (take (rolls-to-score rolls) rolls)))
 
-(defn advance-frame [balls]
-  (drop (balls-to-drop balls) balls))
+(defn advance-frame [rolls]
+  (drop (rolls-to-drop rolls) rolls))
