@@ -3,9 +3,9 @@
 
 (defn score [game-rolls]
   (loop [score 0 rolls game-rolls]
-    (cond (empty? rolls) score
-          :else (recur (+ score (score-frame rolls))
-                       (advance-frame rolls)))))
+    (if (empty? rolls) score
+    (recur (+ score (score-frame rolls))
+           (advance-frame rolls)))))
 
 (defn spare? [rolls]
   (= 10 (+ (first rolls) (second rolls))))
