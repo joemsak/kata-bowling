@@ -14,8 +14,7 @@
 
 (deftest spare-games-test
   (testing "Roll a spare followed by 3 then all gutters scores 16"
-    (let [rolls (concat [5 5 3] (repeat 17 0))]
-      (assert-scored 16 rolls)))
+    (assert-scored 16  (concat [5 5 3] (repeat 17 0))))
 
   (testing "A game of all gutter-spares scores 100"
     (assert-scored 100 (take 20 (cycle [0 10]))))
