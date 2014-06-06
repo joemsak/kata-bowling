@@ -1,3 +1,3 @@
 class Game:
     def score(self, rolls):
-        return 0
+        return sum(rolls)
