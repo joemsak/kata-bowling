@@ -1,11 +1,9 @@
 from nose.tools import *
-import game
+from game import Game
 
-def setup():
-    print "SETUP!"
-
-def teardown():
-    print "TEAR DOWN!"
-
-def test_basic():
-    print "I RAN!"
+def test_all_gutters_scores_zero():
+    game  = Game()
+    rolls = [0] * 20
+    print rolls
+    score = game.score(rolls)
+    assert_equal(0, score)
