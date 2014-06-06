@@ -1,14 +1,10 @@
 from nose.tools import *
 from game import Game
 
+game = Game()
+
 def test_all_gutters_scores_zero():
-    game  = Game()
-    rolls = [0] * 20
-    score = game.score(rolls)
-    assert_equal(0, score)
+    assert_equal(0, game.score([0] * 20))
 
 def test_all_ones_scores_twenty():
-    game  = Game()
-    rolls = [1] * 20
-    score = game.score(rolls)
-    assert_equal(20, score)
+    assert_equal(20, game.score([1] * 20))
