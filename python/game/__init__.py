@@ -11,16 +11,18 @@ class Game:
                 score += points
             else:
                 frame  = [rolls.popleft()]
-                score += frame[0]
                 score += self.__getScoreFromFrame(rolls, frame)
-
         return score
 
     def __getScoreFromFrame(self, rolls, frame):
-        if    self.__isStrike(frame): return rolls[0] + rolls[1]
-        else: frame.append(rolls.popleft())
-        if    self.__isSpare(frame):  return frame[1] + rolls[0]
-        else:                         return frame[1]
+        points = frame[0]
+        if self.__isStrike(frame):
+            points += rolls[0] + rolls[1]
+        else:
+            frame.append(rolls.popleft())
+            points += frame[1]
+            if self.__isSpare(frame): points += rolls[0]
+        return points
 
     def __isTenthFrame(self, rolls): return len(rolls) <= 3
     def __isStrike(self, frame):     return frame[0] == 10
