@@ -5,7 +5,7 @@ class Game:
         score = 0
         rolls = deque(rolls)
         while len(rolls) > 0:
-            if self.__isTenthFrame(rolls):
+            if self.__isTenthFrame(rolls): # This is bad actually
                 points = sum(rolls)
                 rolls.clear()
                 score += points

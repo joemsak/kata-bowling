@@ -2,7 +2,7 @@ class Game
   def score(rolls)
     score = 0
     while rolls.size > 0 do
-      if is_tenth_frame?(rolls)
+      if is_tenth_frame?(rolls) # this is bad, actually
         score += get_tenth_frame_score(rolls)
       else
         frame = [rolls.shift]
