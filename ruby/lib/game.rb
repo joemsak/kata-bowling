@@ -1,13 +1,15 @@
 class Game
   def score(rolls)
     score = 0
+    frame_index = 1 # this sucks but passes for now
     while rolls.size > 0 do
-      if is_tenth_frame?(rolls) # this is bad, actually
+      if frame_index > 9
         score += get_tenth_frame_score(rolls)
       else
         frame = [rolls.shift]
         score += get_frame_score(rolls, frame)
       end
+      frame_index += 1
     end
     score
   end
