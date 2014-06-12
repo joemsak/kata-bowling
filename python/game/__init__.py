@@ -30,6 +30,5 @@ class Game:
 
         return points
 
-    def __isTenthFrame(self, rolls): return len(rolls) <= 3
     def __isStrike(self, frame):     return frame[0] == 10
     def __isSpare(self, frame):      return sum(frame) == 10

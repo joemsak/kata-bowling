@@ -16,7 +16,7 @@ def test_all_strikes_scores_three_hundred():
     assert_equal(300, game.getScore([10] * 12))
 
 def test_complex_games():
-    first_nine_frames = [10, 10, 10, 10, 5, 5, 6, 4, 10, 10, 10]
-    assert_equal(261, game.getScore(first_nine_frames + [10, 10, 10]))
-    assert_equal(236, game.getScore(first_nine_frames + [5, 5, 10]))
-    assert_equal(224, game.getScore(first_nine_frames + [5, 4]))
+    firstNineFrames = [10, 10, 10, 10, 5, 5, 6, 4, 10, 10, 10]
+    assert_equal(261, game.getScore(firstNineFrames + [10, 10, 10]))
+    assert_equal(236, game.getScore(firstNineFrames + [5, 5, 10]))
+    assert_equal(224, game.getScore(firstNineFrames + [5, 4]))

@@ -41,10 +41,6 @@ class Game
     rolls[0]
   end
 
-  def is_tenth_frame?(rolls)
-    rolls.size <= 3
-  end
-
   def is_strike?(frame)
     frame[0] == 10
   end
