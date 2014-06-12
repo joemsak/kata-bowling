@@ -4,8 +4,10 @@ class Game:
     def getScore(self, rolls):
         score = 0
         rolls = deque(rolls)
+        frame_index = 0
         while len(rolls) > 0:
-            if self.__isTenthFrame(rolls): # This is bad actually
+            frame_index += 1
+            if frame_index > 9:
                 points = sum(rolls)
                 rolls.clear()
                 score += points
