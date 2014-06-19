@@ -5,15 +5,14 @@ class Game:
         score = 0
         rolls = deque(rolls)
         frame_number = 1
-        while len(rolls) > 0:
-            if frame_number == 10:
-                points = sum(rolls)
-                rolls.clear()
-            else:
-                frame  = [rolls.popleft()]
-                points = self.__getPointsFromFrame(frame, rolls)
-            score += points
+
+        while frame_number < 10:
+            frame  = [rolls.popleft()]
+            score += self.__getPointsFromFrame(frame, rolls)
             frame_number += 1
+
+        score += sum(rolls)
+
         return score
 
     def __getPointsFromFrame(self, frame, rolls):
