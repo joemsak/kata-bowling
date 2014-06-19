@@ -8,15 +8,15 @@ class Game:
         while len(rolls) > 0:
             frame_index += 1
             if frame_index > 9:
-                points = sum(rolls)
+                points = self.__getPointsFromTenthFrame(rolls)
                 rolls.clear()
-                score += points
             else:
                 frame  = [rolls.popleft()]
-                score += self.__getScoreFromFrame(rolls, frame)
+                points = self.__getPointsFromFrame(frame, rolls)
+            score += points
         return score
 
-    def __getScoreFromFrame(self, rolls, frame):
+    def __getPointsFromFrame(self, frame, rolls):
         points = frame[0]
 
         if self.__isStrike(frame):
@@ -29,6 +29,9 @@ class Game:
                 points += rolls[0]
 
         return points
+
+    def __getPointsFromTenthFrame(self, rolls):
+        return sum(rolls)
 
     def __isStrike(self, frame):     return frame[0] == 10
     def __isSpare(self, frame):      return sum(frame) == 10
