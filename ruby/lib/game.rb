@@ -1,16 +1,12 @@
 class Game
   def score(rolls)
     score = 0
-    frame_index = 1 # this sucks but passes for now
-    while rolls.size > 0 do
-      if frame_index > 9
-        score += get_tenth_frame_score(rolls)
-      else
-        frame = [rolls.shift]
-        score += get_frame_score(rolls, frame)
-      end
-      frame_index += 1
+    frame_number = 1 # this sucks but passes for now
+    while frame_number < 10 do
+      score += get_frame_score(rolls, [rolls.shift])
+      frame_number += 1
     end
+    score += rolls.inject(&:+)
     score
   end
 
@@ -24,12 +20,6 @@ class Game
       points += frame[1]
       points += get_spare_points(rolls) if is_spare?(frame)
     end
-    points
-  end
-
-  def get_tenth_frame_score(rolls)
-    points = rolls.inject(&:+)
-    rolls.clear
     points
   end
 
